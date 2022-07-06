@@ -1,0 +1,568 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Use Case Diagram - Use Case Diagram Buy Flight and Hotel</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Flytoday	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="PackageDiagram__SMl_gGFYEUE6Q9v.html" class="PageParentTitle">سیستم خرید پرواز و هتل : Package</a>	</p>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Use Case Diagram - Use Case Diagram Buy Flight and Hotel		</span>
+<a onclick="javascript: showVpLink('Flytoday.vpp://diagram/ig3C.gGFYEUE6QkS', 'Use Case Diagram Buy Flight and Hotel\nFlytoday.vpp://diagram/ig3C.gGFYEUE6QkS', 'Use Case Diagram Buy Flight and Hotel', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|14.0|33.0|140.0|100.0|Package_SaGHBgGFYEUE6RW6.html|Package_SaGHBgGFYEUE6RW6.html|SaGHBgGFYEUE6RW5" id="optionSaGHBgGFYEUE6RW5">سیستم ثبت نام و ورود به حساب کاربری : Package</option>
+<option value="shape|222.0|235.0|30.0|60.0|Actor_hAum_gGFYEUE6QlK.html|Actor_hAum_gGFYEUE6QlK.html|BAum.gGFYEUE6QlJ" id="optionBAum.gGFYEUE6QlJ">مشتری : Actor</option>
+<option value="shape|1231.0|422.0|30.0|60.0|Actor_UnfO_gGFYEUE6Qsp.html|Actor_UnfO_gGFYEUE6Qsp.html|UnfO.gGFYEUE6Qso" id="optionUnfO.gGFYEUE6Qso">سیستم : Actor</option>
+<option value="shape|396.0|552.0|134.0|74.0|UseCase_AkGS_gGFYEUE6Qk1.html|UseCase_AkGS_gGFYEUE6Qk1.html|3EGS.gGFYEUE6Qk0" id="option3EGS.gGFYEUE6Qk0">خرید بلیط پرواز : Use Case</option>
+<option value="shape|155.0|709.0|131.0|70.0|UseCase_arSW_gGFYEUE6QnY.html|UseCase_arSW_gGFYEUE6QnY.html|arSW.gGFYEUE6QnX" id="optionarSW.gGFYEUE6QnX">انتخاب نوع پرواز : Use Case</option>
+<option value="shape|304.0|705.0|134.0|74.0|UseCase_rr6W_gGFYEUE6Qny.html|UseCase_rr6W_gGFYEUE6Qny.html|rr6W.gGFYEUE6Qnx" id="optionrr6W.gGFYEUE6Qnx">انتخاب مسافران : Use Case</option>
+<option value="shape|471.0|705.0|134.0|74.0|UseCase_Y95W_gGFYEUE6Qoq.html|UseCase_Y95W_gGFYEUE6Qoq.html|o95W.gGFYEUE6Qoo" id="optiono95W.gGFYEUE6Qoo">انتخاب کلاس پروازی : Use Case</option>
+<option value="shape|638.0|705.0|134.0|74.0|UseCase_TtTW_gGFYEUE6QpY.html|UseCase_TtTW_gGFYEUE6QpY.html|jtTW.gGFYEUE6QpW" id="optionjtTW.gGFYEUE6QpW">انتخاب مسیرهای پرواز : Use Case</option>
+<option value="shape|396.0|123.0|134.0|74.0|UseCase_Aiou_gGFYEUE6QtV.html|UseCase_Aiou_gGFYEUE6QtV.html|Aiou.gGFYEUE6QtT" id="optionAiou.gGFYEUE6QtT">ورود به حساب کاربری : Use Case</option>
+<option value="shape|396.0|40.0|134.0|74.0|UseCase__i7e_gGFYEUE6QvR.html|UseCase__i7e_gGFYEUE6QvR.html|fi7e.gGFYEUE6QvP" id="optionfi7e.gGFYEUE6QvP">ثبت نام در سایت : Use Case</option>
+<option value="shape|616.0|76.0|191.0|74.0|UseCase_bH___gGFYEUE6Qv6.html|UseCase_bH___gGFYEUE6Qv6.html|rH_..gGFYEUE6Qv4" id="optionrH_..gGFYEUE6Qv4">پردازش خرید : Use Case</option>
+<option value="shape|838.0|106.0|134.0|74.0|UseCase__WkB_gGFYEUE6Qwx.html|UseCase__WkB_gGFYEUE6Qwx.html|eWkB.gGFYEUE6Qwv" id="optioneWkB.gGFYEUE6Qwv">استرداد خرید : Use Case</option>
+<option value="shape|832.0|2.0|134.0|74.0|UseCase_5zZB_gGFYEUE6QyD.html|UseCase_5zZB_gGFYEUE6QyD.html|ZzZB.gGFYEUE6QyB" id="optionZzZB.gGFYEUE6QyB">نهایی کردن خرید : Use Case</option>
+<option value="shape|396.0|246.0|134.0|74.0|UseCase_b0ch_gGFYEUE6QzA.html|UseCase_b0ch_gGFYEUE6QzA.html|r0ch.gGFYEUE6Qy." id="optionr0ch.gGFYEUE6Qy.">پرداخت هزینه : Use Case</option>
+<option value="shape|396.0|348.0|134.0|74.0|UseCase_qNph_gGFYEUE6Qz_.html|UseCase_qNph_gGFYEUE6Qz_.html|KNph.gGFYEUE6Qz8" id="optionKNph.gGFYEUE6Qz8">دریافت فاکتور : Use Case</option>
+<option value="shape|838.0|228.0|134.0|74.0|UseCase_pBVh_gGFYEUE6Q0Y.html|UseCase_pBVh_gGFYEUE6Q0Y.html|pBVh.gGFYEUE6Q0W" id="optionpBVh.gGFYEUE6Q0W">صدور فاکتور : Use Case</option>
+<option value="shape|838.0|350.0|134.0|74.0|UseCase_rczp_gGFYEUE6Q5U.html|UseCase_rczp_gGFYEUE6Q5U.html|zczp.gGFYEUE6Q5S" id="optionzczp.gGFYEUE6Q5S">اعطای امتیاز و کد تخفیف : Use Case</option>
+<option value="shape|838.0|472.0|134.0|74.0|UseCase_Ej45_gGFYEUE6Q6B.html|UseCase_Ej45_gGFYEUE6Q6B.html|Ej45.gGFYEUE6Q5_" id="optionEj45.gGFYEUE6Q5_">ارسال اطلاعات خرید به شرکت پرواز : Use Case</option>
+<option value="shape|396.0|450.0|134.0|74.0|UseCase_j_10BgGFYEUE6RBz.html|UseCase_j_10BgGFYEUE6RBz.html|D_10BgGFYEUE6RBx" id="optionD_10BgGFYEUE6RBx">دریافت بلیط : Use Case</option>
+<option value="shape|136.0|552.0|134.0|74.0|UseCase_Rf68JgGFYEUE6Qmd.html|UseCase_Rf68JgGFYEUE6Qmd.html|hf68JgGFYEUE6Qmb" id="optionhf68JgGFYEUE6Qmb">رزرو اتاق هتل : Use Case</option>
+<option value="shape|2.0|705.0|134.0|74.0|UseCase_zIB8JgGFYEUE6Qm3.html|UseCase_zIB8JgGFYEUE6Qm3.html|TIB8JgGFYEUE6Qm1" id="optionTIB8JgGFYEUE6Qm1">انتخاب اتاق : Use Case</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Use_Case_Diagram_Buy_Flight_and_Hotel.png" usemap="#diagram_map" class="Image" width="1281" height="783"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="396.0, 617.15924, 272.76068, 709.0, 286.0, 709.0, 286.0, 716.0955, 406.89743, 626.0, 396.0, 626.0, 396.0, 617.15924" coords2="396.0, 617.15924, 272.76068, 709.0, 286.0, 709.0, 286.0, 716.0955, 406.89743, 626.0, 396.0, 626.0, 396.0, 617.15924" shape="poly" alt=":Include" id="areadiagram_map_OE82.gGFYEUE6QqD_default" href="Include_CE82_gGFYEUE6QqB.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="481.0, 626.0, 481.0, 705.0, 495.0, 705.0, 495.0, 626.0" coords2="481.0, 626.0, 481.0, 705.0, 495.0, 705.0, 495.0, 626.0" shape="poly" alt=":Include" id="areadiagram_map_LOi2.gGFYEUE6QqR_default" href="Include_9Oi2_gGFYEUE6QqQ.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="530.0, 617.5806, 530.0, 626.0, 518.4602, 626.0, 638.0, 713.1484, 638.0, 705.0, 649.9115, 705.0, 530.0, 617.5806" coords2="530.0, 617.5806, 530.0, 626.0, 518.4602, 626.0, 638.0, 713.1484, 638.0, 705.0, 649.9115, 705.0, 530.0, 617.5806" shape="poly" alt=":Include" id="areadiagram_map_II5O.gGFYEUE6QrW_default" href="Include_fw5O_gGFYEUE6QrV.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="428.0, 626.0, 428.0, 705.0, 438.0, 705.0, 438.0, 741.0, 442.0, 741.0, 442.0, 626.0" coords2="428.0, 626.0, 428.0, 705.0, 438.0, 705.0, 438.0, 741.0, 442.0, 741.0, 442.0, 626.0" shape="poly" alt=":Include" id="areadiagram_map_OfNO.gGFYEUE6Qr0_default" href="Include_ofNO_gGFYEUE6Qrz.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="271.0, 300.0, 258.0, 305.0, 396.0, 569.5, 396.0, 552.0, 402.47827, 552.0, 271.0, 300.0" coords2="271.0, 300.0, 258.0, 305.0, 396.0, 569.5, 396.0, 552.0, 402.47827, 552.0, 271.0, 300.0" shape="poly" alt=":Realization" id="areadiagram_map_dmuu.gGFYEUE6Qt8_default" href="Realization_lmuu_gGFYEUE6Qt7.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="807.0, 106.0, 807.0, 120.0, 838.0, 120.0, 838.0, 106.0" coords2="807.0, 106.0, 807.0, 120.0, 838.0, 120.0, 838.0, 106.0" shape="poly" alt=":Extend" id="areadiagram_map_Le.B.gGFYEUE6Qx1_default" href="Extend_1e_B_gGFYEUE6Qxz.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="832.0, 41.25, 785.6667, 76.0, 807.0, 76.0, 807.0, 77.0, 832.0, 58.25, 832.0, 41.25" coords2="832.0, 41.25, 785.6667, 76.0, 807.0, 76.0, 807.0, 77.0, 832.0, 58.25, 832.0, 41.25" shape="poly" alt=":Extend" id="areadiagram_map_kZVB.gGFYEUE6Qyd_default" href="Extend_IZVB_gGFYEUE6Qyb.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="252.0, 270.0, 252.0, 284.0, 396.0, 284.0, 396.0, 270.0" coords2="252.0, 270.0, 252.0, 284.0, 396.0, 284.0, 396.0, 270.0" shape="poly" alt=":Realization" id="areadiagram_map_B76h.gGFYEUE6Qzh_default" href="Realization_M76h_gGFYEUE6Qzg.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="972.0, 294.81207, 972.0, 302.0, 955.2177, 302.0, 1231.0, 438.04028, 1231.0, 422.57382, 972.0, 294.81207" coords2="972.0, 294.81207, 972.0, 302.0, 955.2177, 302.0, 1231.0, 438.04028, 1231.0, 422.57382, 972.0, 294.81207" shape="poly" alt=":Realization" id="areadiagram_map_cBjh.gGFYEUE6Q0r_default" href="Realization_UBjh_gGFYEUE6Q0q.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="972.0, 416.0, 972.0, 424.0, 911.0, 424.0, 911.0, 430.0, 1231.0, 430.0, 1231.0, 422.0, 1240.0, 422.0, 1240.0, 416.0" coords2="972.0, 416.0, 972.0, 424.0, 911.0, 424.0, 911.0, 430.0, 1231.0, 430.0, 1231.0, 422.0, 1240.0, 422.0, 1240.0, 416.0" shape="poly" alt=":Realization" id="areadiagram_map_G6fp.gGFYEUE6Q52_default" href="Realization_g6fp_gGFYEUE6Q51.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="972.0, 492.0, 972.0, 506.0, 1223.0, 506.0, 1223.0, 492.0" coords2="972.0, 492.0, 972.0, 506.0, 1223.0, 506.0, 1223.0, 492.0" shape="poly" alt=":Realization" id="areadiagram_map_Nei5.gGFYEUE6Q6a_default" href="Realization_Fei5_gGFYEUE6Q6Z.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="267.0, 300.0, 257.0, 310.0, 396.0, 459.90195, 396.0, 450.0, 406.0909, 450.0, 267.0, 300.0" coords2="267.0, 300.0, 257.0, 310.0, 396.0, 459.90195, 396.0, 450.0, 406.0909, 450.0, 267.0, 300.0" shape="poly" alt=":Realization" id="areadiagram_map_P6r0BgGFYEUE6RCg_default" href="Realization__6r0BgGFYEUE6RCf.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="652.0, 150.0, 652.0, 162.17284, 516.2, 246.0, 530.0, 246.0, 530.0, 253.41975, 653.8, 177.0, 666.0, 177.0, 666.0, 169.46913, 670.0, 167.0, 666.0, 161.5, 666.0, 150.0" coords2="652.0, 150.0, 652.0, 162.17284, 516.2, 246.0, 530.0, 246.0, 530.0, 253.41975, 653.8, 177.0, 666.0, 177.0, 666.0, 169.46913, 670.0, 167.0, 666.0, 161.5, 666.0, 150.0" shape="poly" alt=":Include" id="areadiagram_map_G4uBBgGFYEUE6RLj_default" href="Include_PYuBBgGFYEUE6RLi.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="740.17145, 150.0, 838.0, 240.10527, 838.0, 228.0, 845.7143, 228.0, 761.02856, 150.0" coords2="740.17145, 150.0, 838.0, 240.10527, 838.0, 228.0, 845.7143, 228.0, 761.02856, 150.0" shape="poly" alt=":Include" id="areadiagram_map_elRBBgGFYEUE6RL5_default" href="Include_KlRBBgGFYEUE6RL4.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="262.0, 302.0, 258.0, 316.0, 396.0, 354.73685, 396.0, 354.73685, 396.0, 348.0, 424.91666, 348.0, 262.0, 302.0, 396.0, 354.73685, 396.0, 354.73685, 396.0, 354.73685, 396.0, 354.73685" coords2="262.0, 302.0, 258.0, 316.0, 396.0, 354.73685, 396.0, 354.73685, 396.0, 348.0, 424.91666, 348.0, 262.0, 302.0, 396.0, 354.73685, 396.0, 354.73685, 396.0, 354.73685, 396.0, 354.73685" shape="poly" alt=":Realization" id="areadiagram_map_KCGR.gGFYEUE6Q1X_default" href="Realization_CCGR_gGFYEUE6Q1W.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="838.0, 256.88385, 499.43158, 348.0, 530.0, 348.0, 530.0, 354.82385, 838.0, 271.69885, 838.0, 256.88385" coords2="838.0, 256.88385, 499.43158, 348.0, 530.0, 348.0, 530.0, 354.82385, 838.0, 271.69885, 838.0, 256.88385" shape="poly" alt=":Association" id="areadiagram_map_0sIhBgGFYEUE6RNa_default" href="Association_LMIhBgGFYEUE6RNT.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="838.0, 293.91306, 511.63635, 450.0, 530.0, 450.0, 530.0, 456.6087, 853.2727, 302.0, 838.0, 302.0, 838.0, 293.91306" coords2="838.0, 293.91306, 511.63635, 450.0, 530.0, 450.0, 530.0, 456.6087, 853.2727, 302.0, 838.0, 302.0, 838.0, 293.91306" shape="poly" alt=":Association" id="areadiagram_map_ZRYhBgGFYEUE6RNk_default" href="Association_2RYhBgGFYEUE6RNf.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="396.0, 188.88235, 242.0, 235.0, 252.0, 235.0, 252.0, 247.19354, 418.7143, 197.0, 396.0, 197.0, 396.0, 188.88235" coords2="396.0, 188.88235, 242.0, 235.0, 252.0, 235.0, 252.0, 247.19354, 418.7143, 197.0, 396.0, 197.0, 396.0, 188.88235" shape="poly" alt=":Realization" id="areadiagram_map_W8nu.gGFYEUE6QuB_default" href="Realization_q8nu_gGFYEUE6QuA.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="154.0, 126.0, 154.0, 133.0, 145.0, 133.0, 145.0, 140.0, 396.0, 140.0, 396.0, 126.0" coords2="154.0, 126.0, 154.0, 133.0, 145.0, 133.0, 145.0, 140.0, 396.0, 140.0, 396.0, 126.0" shape="poly" alt=":Generic Connector" id="areadiagram_map_NODnBgGFYEUE6RZd_default" href="GenericConnector_RODnBgGFYEUE6RZc.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="530.0, 123.0, 530.0, 137.0, 616.0, 137.0, 616.0, 123.0" coords2="530.0, 123.0, 530.0, 137.0, 616.0, 137.0, 616.0, 123.0" shape="poly" alt=":Include" id="areadiagram_map_Xeix.gGFYEUE6Q4R_default" href="Include_reix_gGFYEUE6Q4Q.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="396.0, 102.38596, 252.0, 240.49123, 252.0, 240.49123, 252.0, 260.08188, 404.31708, 114.0, 396.0, 114.0, 396.0, 102.38596" coords2="396.0, 102.38596, 252.0, 240.49123, 252.0, 240.49123, 252.0, 260.08188, 404.31708, 114.0, 396.0, 114.0, 396.0, 102.38596" shape="poly" alt=":Realization" id="areadiagram_map_XUKh.gGFYEUE6QzZ_default" href="Realization_JUKh_gGFYEUE6QzY.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="154.0, 50.0, 154.0, 64.0, 396.0, 64.0, 396.0, 50.0" coords2="154.0, 50.0, 154.0, 64.0, 396.0, 64.0, 396.0, 50.0" shape="poly" alt=":Generic Connector" id="areadiagram_map_XjjnBgGFYEUE6RZj_default" href="GenericConnector_jjjnBgGFYEUE6RZi.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="530.0, 86.0, 530.0, 100.0, 616.0, 100.0, 616.0, 86.0" coords2="530.0, 86.0, 530.0, 100.0, 616.0, 100.0, 616.0, 86.0" shape="poly" alt=":Include" id="areadiagram_map_12Sx.gGFYEUE6Q4V_default" href="Include_p2Sx_gGFYEUE6Q4U.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="136.0, 613.3736, 59.504585, 705.0, 78.01835, 705.0, 143.97247, 626.0, 136.0, 626.0, 136.0, 613.3736" coords2="136.0, 613.3736, 59.504585, 705.0, 78.01835, 705.0, 143.97247, 626.0, 136.0, 626.0, 136.0, 613.3736" shape="poly" alt=":Include" id="areadiagram_map_u.v8JgGFYEUE6Qnj_default" href="Include_i_v8JgGFYEUE6Qni.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="270.0, 617.871, 270.0, 626.0, 258.4923, 626.0, 304.0, 721.4194, 304.0, 721.4194, 304.0, 705.0, 311.55383, 705.0, 270.0, 617.871" coords2="270.0, 617.871, 270.0, 626.0, 258.4923, 626.0, 304.0, 721.4194, 304.0, 721.4194, 304.0, 705.0, 311.55383, 705.0, 270.0, 617.871" shape="poly" alt=":Include" id="areadiagram_map_u2gCJgGFYEUE6Qn1_default" href="Include_i2gCJgGFYEUE6Qn0.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="216.0, 302.0, 216.0, 552.0, 230.0, 552.0, 230.0, 302.0" coords2="216.0, 302.0, 216.0, 552.0, 230.0, 552.0, 230.0, 302.0" shape="poly" alt=":Dependency" id="areadiagram_map_bP0CJgGFYEUE6QoX_default" href="Dependency_GP0CJgGFYEUE6QoW.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2, 705, 136, 779" coords2="2, 705, 136, 779" shape="rect" alt="انتخاب اتاق:Use Case" id="areadiagram_map_TIB8JgGFYEUE6Qm1_default" href="UseCase_zIB8JgGFYEUE6Qm3.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="136, 552, 270, 626" coords2="136, 552, 270, 626" shape="rect" alt="رزرو اتاق هتل:Use Case" id="areadiagram_map_hf68JgGFYEUE6Qmb_default" href="UseCase_Rf68JgGFYEUE6Qmd.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="14, 33, 154, 133" coords2="14, 33, 154, 133" shape="rect" alt="سیستم ثبت نام و ورود به حساب کاربری:Package" id="areadiagram_map_SaGHBgGFYEUE6RW5_default" href="Package_SaGHBgGFYEUE6RW6.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="396, 450, 530, 524" coords2="396, 450, 530, 524" shape="rect" alt="دریافت بلیط:Use Case" id="areadiagram_map_D_10BgGFYEUE6RBx_default" href="UseCase_j_10BgGFYEUE6RBz.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="838, 472, 972, 546" coords2="838, 472, 972, 546" shape="rect" alt="ارسال اطلاعات خرید به شرکت پرواز:Use Case" id="areadiagram_map_Ej45.gGFYEUE6Q5__default" href="UseCase_Ej45_gGFYEUE6Q6B.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="838, 350, 972, 424" coords2="838, 350, 972, 424" shape="rect" alt="اعطای امتیاز و کد تخفیف:Use Case" id="areadiagram_map_zczp.gGFYEUE6Q5S_default" href="UseCase_rczp_gGFYEUE6Q5U.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="838, 228, 972, 302" coords2="838, 228, 972, 302" shape="rect" alt="صدور فاکتور:Use Case" id="areadiagram_map_pBVh.gGFYEUE6Q0W_default" href="UseCase_pBVh_gGFYEUE6Q0Y.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="396, 348, 530, 422" coords2="396, 348, 530, 422" shape="rect" alt="دریافت فاکتور:Use Case" id="areadiagram_map_KNph.gGFYEUE6Qz8_default" href="UseCase_qNph_gGFYEUE6Qz_.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="396, 246, 530, 320" coords2="396, 246, 530, 320" shape="rect" alt="پرداخت هزینه:Use Case" id="areadiagram_map_r0ch.gGFYEUE6Qy._default" href="UseCase_b0ch_gGFYEUE6QzA.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="832, 2, 966, 76" coords2="832, 2, 966, 76" shape="rect" alt="نهایی کردن خرید:Use Case" id="areadiagram_map_ZzZB.gGFYEUE6QyB_default" href="UseCase_5zZB_gGFYEUE6QyD.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="838, 106, 972, 180" coords2="838, 106, 972, 180" shape="rect" alt="استرداد خرید:Use Case" id="areadiagram_map_eWkB.gGFYEUE6Qwv_default" href="UseCase__WkB_gGFYEUE6Qwx.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="616, 76, 807, 150" coords2="616, 76, 807, 150" shape="rect" alt="پردازش خرید:Use Case" id="areadiagram_map_rH_..gGFYEUE6Qv4_default" href="UseCase_bH___gGFYEUE6Qv6.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="396, 123, 530, 197" coords2="396, 123, 530, 197" shape="rect" alt="ورود به حساب کاربری:Use Case" id="areadiagram_map_Aiou.gGFYEUE6QtT_default" href="UseCase_Aiou_gGFYEUE6QtV.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="396, 40, 530, 114" coords2="396, 40, 530, 114" shape="rect" alt="ثبت نام در سایت:Use Case" id="areadiagram_map_fi7e.gGFYEUE6QvP_default" href="UseCase__i7e_gGFYEUE6QvR.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1231, 422, 1261, 482" coords2="1231, 422, 1261, 482" shape="rect" alt="سیستم:Actor" id="areadiagram_map_UnfO.gGFYEUE6Qso_default" href="Actor_UnfO_gGFYEUE6Qsp.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="638, 705, 772, 779" coords2="638, 705, 772, 779" shape="rect" alt="انتخاب مسیرهای پرواز:Use Case" id="areadiagram_map_jtTW.gGFYEUE6QpW_default" href="UseCase_TtTW_gGFYEUE6QpY.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="471, 705, 605, 779" coords2="471, 705, 605, 779" shape="rect" alt="انتخاب کلاس پروازی:Use Case" id="areadiagram_map_o95W.gGFYEUE6Qoo_default" href="UseCase_Y95W_gGFYEUE6Qoq.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="304, 705, 438, 779" coords2="304, 705, 438, 779" shape="rect" alt="انتخاب مسافران:Use Case" id="areadiagram_map_rr6W.gGFYEUE6Qnx_default" href="UseCase_rr6W_gGFYEUE6Qny.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="155, 709, 286, 779" coords2="155, 709, 286, 779" shape="rect" alt="انتخاب نوع پرواز:Use Case" id="areadiagram_map_arSW.gGFYEUE6QnX_default" href="UseCase_arSW_gGFYEUE6QnY.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="222, 235, 252, 295" coords2="222, 235, 252, 295" shape="rect" alt="مشتری:Actor" id="areadiagram_map_BAum.gGFYEUE6QlJ_default" href="Actor_hAum_gGFYEUE6QlK.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="396, 552, 530, 626" coords2="396, 552, 530, 626" shape="rect" alt="خرید بلیط پرواز:Use Case" id="areadiagram_map_3EGS.gGFYEUE6Qk0_default" href="UseCase_AkGS_gGFYEUE6Qk1.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Package.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Package.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Package_SaGHBgGFYEUE6RW6.html" class="ItemLink">سیستم ثبت نام و ورود به حساب کاربری : Package</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Actor_hAum_gGFYEUE6QlK.html" class="ItemLink">مشتری : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Actor_UnfO_gGFYEUE6Qsp.html" class="ItemLink">سیستم : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_AkGS_gGFYEUE6Qk1.html" class="ItemLink">خرید بلیط پرواز : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_arSW_gGFYEUE6QnY.html" class="ItemLink">انتخاب نوع پرواز : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_rr6W_gGFYEUE6Qny.html" class="ItemLink">انتخاب مسافران : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_Y95W_gGFYEUE6Qoq.html" class="ItemLink">انتخاب کلاس پروازی : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_TtTW_gGFYEUE6QpY.html" class="ItemLink">انتخاب مسیرهای پرواز : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_Aiou_gGFYEUE6QtV.html" class="ItemLink">ورود به حساب کاربری : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase__i7e_gGFYEUE6QvR.html" class="ItemLink">ثبت نام در سایت : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_bH___gGFYEUE6Qv6.html" class="ItemLink">پردازش خرید : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase__WkB_gGFYEUE6Qwx.html" class="ItemLink">استرداد خرید : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_5zZB_gGFYEUE6QyD.html" class="ItemLink">نهایی کردن خرید : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_b0ch_gGFYEUE6QzA.html" class="ItemLink">پرداخت هزینه : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_qNph_gGFYEUE6Qz_.html" class="ItemLink">دریافت فاکتور : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_pBVh_gGFYEUE6Q0Y.html" class="ItemLink">صدور فاکتور : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_rczp_gGFYEUE6Q5U.html" class="ItemLink">اعطای امتیاز و کد تخفیف : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_Ej45_gGFYEUE6Q6B.html" class="ItemLink">ارسال اطلاعات خرید به شرکت پرواز : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_j_10BgGFYEUE6RBz.html" class="ItemLink">دریافت بلیط : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_Rf68JgGFYEUE6Qmd.html" class="ItemLink">رزرو اتاق هتل : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_zIB8JgGFYEUE6Qm3.html" class="ItemLink">انتخاب اتاق : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Flytoday	</div>
+</body>
+</html>
